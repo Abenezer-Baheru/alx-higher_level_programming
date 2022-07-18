@@ -1,9 +1,13 @@
 #!/usr/bin/python3
+"""dividing an intger"""
+
+
 def safe_print_division(a, b):
+    quo = 0
     try:
-        q = a / b
-    except ZeroDivisionError:
-        q = None
+        quo = a / b
+    except (ZeroDivisionError):
+        quo = None
     finally:
-        print("Inside result: {}".format(q))
-    return q 
+        print("Inside result: {}".format(quo))
+        return 
