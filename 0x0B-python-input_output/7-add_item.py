@@ -1,23 +1,19 @@
 #!/usr/bin/python3
-"""
-script to save and load
-"""
+"""Module for a script that adds all arguments to a Python list"""
+import json
 from sys import argv
-save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
 load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
+save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
 
+file_name = "add_item.json"
 
-filename = 'add_item.json'
-my_list = []
+# can also use os.path.exists(file) for try and except
+# be sure to import os.path
 try:
-    my_list = load_from_json_file(filename)
-except Exception:
-    save_to_json_file(my_list, filename)
+    json_list = load_from_json_file(file_name)
+except:
+    json_list = []
+for item in argv[1:]:
+    json_list.append(item)
 
-arg_len = len(argv)
-
-if arg_len > 1:
-    for i in range(1, arg_len):
-        my_list.append(argv[i])
-         
-    save_to_json_file(my_list, filename)
+save_to_json_file(json_list, file_name)
