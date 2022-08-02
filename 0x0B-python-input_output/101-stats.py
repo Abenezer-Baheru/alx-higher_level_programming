@@ -1,11 +1,6 @@
 #!/usr/bin/python3
-"""
-Module for log parsing scripts.
-"""
-
-
+'''Module for log parsing script.'''
 import sys
-
 
 if __name__ == "__main__":
     size = [0]
@@ -20,23 +15,23 @@ if __name__ == "__main__":
             code = int(words[-2])
             if code in codes:
                 codes[code] += 1
-        except Exception as e:
+        except:
             pass
 
-        def print_stats():
-            '''Prints accumulated statistics.'''
-            print("File size: {}".format(size[0]))
-            for k in sorted(codes.keys()):
-                if codes[k]:
-                    print("{}: {}".format(k, codes[k]))
-        i=1
-        try:
-            for line in sys.stdin:
-                check_match(line)
-                if i % 10 == 0:
-                    print_stats()
-                i += 1
-        except KeyboardInterrupt:
-            print_stats()
-            raise
+    def print_stats():
+        '''Prints accumulated statistics.'''
+        print("File size: {}".format(size[0]))
+        for k in sorted(codes.keys()):
+            if codes[k]:
+                print("{}: {}".format(k, codes[k]))
+    i = 1
+    try:
+        for line in sys.stdin:
+            check_match(line)
+            if i % 10 == 0:
+                print_stats()
+            i += 1
+    except KeyboardInterrupt:
         print_stats()
+        raise
+    print_stats()
