@@ -1,11 +1,6 @@
 #!/usr/bin/python3
-"""
-Module for log parsing scripts.
-"""
-
-
+'''Module for log parsing script.'''
 import sys
-
 
 if __name__ == "__main__":
     size = [0]
@@ -20,7 +15,7 @@ if __name__ == "__main__":
             code = int(words[-2])
             if code in codes:
                 codes[code] += 1
-        except Exception as e:
+        except:
             pass
 
     def print_stats():
