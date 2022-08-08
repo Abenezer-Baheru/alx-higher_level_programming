@@ -103,3 +103,23 @@ class Base:
             return [cls.create(**x) for x in d]
         except FileNotFoundError:
             return []
+        
+        
+    @classmethod
+    def load_from_file_csv(cls):
+        """loads instance attributes from csv file and creates instances"""
+        ret = []
+        try:
+            with open(cls.__name__ + ".csv", "r", encoding="utf-8") as f:
+                reader = csv.reader(f)
+                for obj in reader:
+                    v = [eval(i) for i in obj]
+                    if cls.__name__ == "Rectangle":
+                        dct = {"id": v[0], "width": v[1], "height": v[2],
+                               "x": v[3], "y": v[4]}
+                    elif cls.__name__ == "Square":
+                        dct = {"id": v[0], "size": v[1], "x": v[2], "y": v[3]}
+                    ret.append(cls.create(**dct))
+            return ret
+        except FileNotFoundError:
+            return ret
