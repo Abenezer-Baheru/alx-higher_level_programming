@@ -276,22 +276,6 @@ were given"
       #####
 """
         self.assertEqual(f.getvalue(), s)
-        r = Square(9, 8)
-        f = io.StringIO()
-        with redirect_stdout(f):
-            r.display()
-        s = """\
-        #########
-        #########
-        #########
-        #########
-        #########
-        #########
-        #########
-        #########
-        #########
-"""
-        self.assertEqual(f.getvalue(), s)
         r = Square(1, 1, 10)
         f = io.StringIO()
         with redirect_stdout(f):
